@@ -1,27 +1,35 @@
+let x, y;
+let diameter = 50
+let yV = 10, xV = 10
+
 function setup(){
     createCanvas(windowWidth,windowHeight)
-    background(100)
+    y = diameter/2
+    x = width/2
 
-    fill(100,0,0)
-    // noStroke()
-    strokeWeight(3)
-    stroke(200,100,0)
-    
 
 }
 function draw(){
+  background(100)
+  ellipse(x,y, diameter);
+  fill(100, 10, 250, 150)
 
+  x += xV
+  y += yV
 
-}
+  if(y > height - diameter/2){
+    yV = -yV;
+  }
+  if(y < diameter/2 ){
+    yV = -yV;
+  }
+  if(x>width- diameter/2){
+    xV = -xV
+  }
+  if(x < diameter/2){
+    xV = -xV
+  }
+  print(y)
 
-function mouseDragged(){
-        
-    line(pmouseX,pmouseY,mouseX, mouseY)
-   // background(100);
+ 
 }
-function mousePressed(){
-        //    background(100);
-}
-function keyPressed() {
-             background(100);
-} 
