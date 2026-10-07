@@ -1,22 +1,16 @@
-// Ink stars on a grid — pen-plotter drawing in p5.js
-// Click anywhere for a new arrangement. Press S to save the SVG.
 
-// ---- settings ------------------------------------------------
 const PINCH   = 7;    // shape of arms: 2 = diamond, 7 = hairline star
 const COPIES  = 2;    // how many rings per pen colour
 const INNER   = 0.30; // size of the innermost ring (0–1)
 const DENSITY = 0.22; // fraction of crossings that get a star
 const GAP_MIN = 20;   // minimum gap between grid lines (px)
 const GAP_MAX = 45;   // maximum gap between grid lines (px)
-// --------------------------------------------------------------
-
-// Pen colours, yellow (centre) → cyan (outermost)
 const PENS = [
-  [242, 194,  48],   // yellow
-  [240, 123,  43],   // orange
-  [217,  54,  47],   // red
-  [106,  61, 154],   // violet
-  [ 30, 159, 203],   // cyan
+  [242, 194,  48],   
+  [240, 123,  43],   
+  [217,  54,  47],  
+  [106,  61, 154],   
+  [ 30, 159, 203],  
 ];
 
 let stars = [];
@@ -36,7 +30,6 @@ function keyPressed() {
   if (key === 's' || key === 'S') saveSVG();
 }
 
-// ------ build the composition --------------------------------
 
 function makeStars() {
   stars = [];
@@ -68,10 +61,6 @@ function makeStars() {
   }
 }
 
-// ------ star maths -------------------------------------------
-
-// One outline, scaled to `sz` of full size (sz = 1 → outermost ring)
-// It takes one star s and a ring size sz, then returns a list of 200 dots that form the star outline when connected.
 function starPoints(s, sz) {
   let pts = [];
   let steps = 200; // how many dots you want to draw on star outline
@@ -93,23 +82,15 @@ function starPoints(s, sz) {
   return pts;
 }
 
-// Scale for copy k (0 = inner) of pen p (0 = yellow, 4 = cyan)
-//returns a number to shrink a star
-//INNER: the smallest ring is 30% of bigger 
 function ringSize(p, k) {
   let total = PENS.length * COPIES;
-  let idx   = p * COPIES + k;                   //We have 10 rings total (5 pens × 2 copies). idx is just the ring's position number, from 0 (smallest, yellow) to 9 (biggest, cyan).
+  let idx   = p * COPIES + k;                   
   return INNER + (1 - INNER) * (idx / (total - 1));
-  //Inner(where road begin: ssmallest ring starts)
-  //(1 - INNER) = how much room is left,From 0.30 to 1.0 is a gap of 0.70. That's all the room we have to spread the rings across.
-  //(idx / (total - 1) how far you have travelled from start to end,where you are 
-  //It gives back one number that tells starPoints how big to draw this ring. Big number = big ring. Small number = small ring.
+
 }
 
-// ------ draw -------------------------------------------------
-
 function draw() {
-  background('#ECEEEF');
+  background(255);
   blendMode(MULTIPLY);  //blendMode(MULTIPLY) — when two colours overlap, they darken each other, just like real ink on paper. Without this, the second colour would just paint over the first.
   noFill();
   strokeWeight(0.9);
@@ -134,10 +115,8 @@ function draw() {
     }
   }
 
-  blendMode(BLEND);  // reset so the next background() call works
+  blendMode(BLEND); 
 }
-
-// ------ export -----------------------------------------------
 
 function saveSVG() {
   let lines = [];
