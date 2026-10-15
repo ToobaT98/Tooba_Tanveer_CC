@@ -65,17 +65,13 @@ function starPoints(s, sz) {
   let pts = [];
   let steps = 200; // how many dots you want to draw on star outline
   for (let i = 0; i < steps; i++) {
-    let a  = (i / steps) * TWO_PI;//to get small jumps when moving around a circle
-    //cos(a) → left/right. Positive = facing right. Negative = facing left.
-    //At each step, cos(a) and sin(a) say which direction you are facing on the circle. They are always between −1 and +1.
+    let a  = (i / steps) * TWO_PI;
     let c  = cos(a);
     let sn = sin(a);
     let rx = (c  > 0) ? s.right : s.left;  // right half uses right arm, left uses left
     let ry = (sn > 0) ? s.down  : s.up;    // bottom half uses down arm, top uses up
-    let px = s.x + rx * sz * (c  >= 0 ? 1 : -1) * pow(abs(c),  PINCH);//s.x stars own position from centre, the stars edge length, the ring size, the direction of point
-//c>0?1:-1 With the sign: dots go left AND right → you get a full star
-    //sz is the no btw 0 and 1 that shrinks the star
-//px = s.x + rx * sz * sign * squeeze
+    let px = s.x + rx * sz * (c  >= 0 ? 1 : -1) * pow(abs(c),  PINCH);
+
     let py = s.y + ry * sz * (sn >= 0 ? 1 : -1) * pow(abs(sn), PINCH);
     pts.push([px, py]);
   }
@@ -91,7 +87,7 @@ function ringSize(p, k) {
 
 function draw() {
   background(255);
-  blendMode(MULTIPLY);  //blendMode(MULTIPLY) — when two colours overlap, they darken each other, just like real ink on paper. Without this, the second colour would just paint over the first.
+  blendMode(MULTIPLY);  // when two colours overlap, they darken each other, just like real ink on paper. wo this, the second colour would paint over first
   noFill();
   strokeWeight(0.9);
 
