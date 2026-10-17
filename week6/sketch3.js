@@ -11,7 +11,7 @@ let colors = [
 let canvas;
 
 function setup() {
-  // Teacher's projection-mapping setup — KEEP THIS
+  // projection-mapping setup — KEEP THIS
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0, 0);
   canvas.style('z-index', '-1');
@@ -72,16 +72,16 @@ class Bubble {
   }
 }
 
-// function mousePressed() {
-//   for (let i = bubbles.length - 1; i >= 0; i--) {
-//     if (bubbles[i].contains(mouseX, mouseY)) {
-//       bubbles.splice(i, 1);
-//       // window.location.href = 'sketch2.html';
-//       return;
-//     }
-//   }
+function mousePressed() {
+  for (let i = bubbles.length - 1; i >= 0; i--) {
+    if (bubbles[i].contains(mouseX, mouseY)) {
+      bubbles.splice(i, 1);
+      window.location.href = 'sketch2.html';
+      return;
+    }
+  }
 
-  // bubbles.push(new Bubble(mouseX, mouseY));
+  bubbles.push(new Bubble(mouseX, mouseY));
 }
 
 function keyPressed() {
@@ -90,7 +90,7 @@ function keyPressed() {
   }
 }
 
-// Teacher's projection-mapping resize function — KEEP THIS
+//  projection-mapping resize function — KEEP THIS
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }

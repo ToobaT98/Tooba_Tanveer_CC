@@ -1,4 +1,4 @@
-// ---------- Sketch 1: bubbles stored in an array ----------
+
 let bubbles = [];
 let colors = [
   [242, 194, 48],
